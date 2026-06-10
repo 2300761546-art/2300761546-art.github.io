@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>量词练习器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ========== 主页面 ========== -->
+  <div id="screen-home" class="screen active" onclick="goToMode()">
+    <img src="./美术资源/主界面/主页面元素2.png" class="home-ecg" alt="">
+    <h1 class="home-title">量词练习器</h1>
+    <div class="home-bottom">
+      <img src="./美术资源/主界面/主页面元素1.png" class="home-cat" alt="">
+      <p class="tap-hint">点击开始</p>
+    </div>
+  </div>
+
+  <!-- ========== 模式选择界面 ========== -->
+  <div id="screen-mode" class="screen">
+    <div class="mode-header">
+      <img src="./美术资源/模式选择界面/模式选择界面icon.png" class="mode-book-icon" alt="">
+      <h2 class="mode-title">量词练习器</h2>
+    </div>
+    <div class="mode-body">
+      <div class="mode-top-row">
+        <div class="mode-card mode-card-wrong" onclick="startWrongBank()">
+          <span class="mode-card-text">错题本</span>
+        </div>
+        <div class="mode-card mode-card-review" onclick="startReview()">
+          <img src="./美术资源/模式选择界面/模式选择界面元素2.png" class="mode-rabbit" alt="">
+          <span class="mode-card-text">复习</span>
+        </div>
+      </div>
+      <div class="mode-card mode-card-diff">
+        <img src="./美术资源/模式选择界面/模式选择界面元素1.png" class="mode-wolf" alt="">
+        <div class="diff-buttons">
+          <button class="diff-btn" onclick="startDifficulty('easy')">易</button>
+          <button class="diff-btn" onclick="startDifficulty('medium')">中</button>
+          <button class="diff-btn" onclick="startDifficulty('hard')">难</button>
+        </div>
+      </div>
+    </div>
+    <div id="mode-toast" class="mode-toast"></div>
+  </div>
+
+  <!-- ========== 答题界面 ========== -->
+  <div id="screen-quiz" class="screen">
+    <div class="quiz-top">
+      <img src="./美术资源/答题界面/答题界面元素1.png" class="quiz-bunny" alt="">
+      <div class="quiz-status-box" id="quiz-status-box">
+        <div id="quiz-mode-label" class="quiz-mode-label">分数</div>
+        <div id="score-value" class="score-value">0</div>
+        <div id="quiz-exit-btn" class="quiz-exit-btn hidden" onclick="exitQuiz()">✕ 退出</div>
+      </div>
+    </div>
+    <div class="question-card">
+      <div class="question-meta">
+        <span id="question-progress" class="question-progress">1 / 10</span>
+      </div>
+      <p class="question-text" id="question-text"></p>
+    </div>
+    <div class="options-list" id="options-list"></div>
+    <div class="analysis-panel hidden" id="analysis-panel">
+      <div class="analysis-divider">
+        <span class="analysis-label-inline">解析</span>
+        <img src="./美术资源/答题界面/答题界面元素2.png" class="quiz-cat" alt="">
+      </div>
+      <div class="analysis-body">
+        <p class="analysis-text" id="analysis-text"></p>
+      </div>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()">下一题</button>
+    </div>
+  </div>
+
+  <!-- ========== 结算界面 ========== -->
+  <div id="screen-result" class="screen">
+    <button class="back-btn" onclick="backToMode()">
+      <img src="./美术资源/结算界面/结算页面退出icon.png" alt="返回">
+    </button>
+    <img src="./美术资源/结算界面/结算页面icon2.png" class="result-ecg" alt="">
+    <img id="result-char" src="" class="result-char" alt="">
+    <div class="result-score-box">
+      <span>得分：<strong id="result-score-value">0</strong></span>
+    </div>
+    <button class="confirm-btn" onclick="confirmResult()">确认</button>
+  </div>
+
+  <!-- ========== 练习完成界面（错题本/复习模式） ========== -->
+  <div id="screen-done" class="screen">
+    <div class="done-inner">
+      <img src="./美术资源/主界面/主页面元素1.png" class="done-cat" alt="">
+      <h2 class="done-title" id="done-title">练习完成！</h2>
+      <p class="done-sub" id="done-sub"></p>
+      <button class="confirm-btn" onclick="backToMode()">返回</button>
+    </div>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
